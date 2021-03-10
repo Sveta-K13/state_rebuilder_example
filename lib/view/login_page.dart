@@ -40,8 +40,10 @@ class _LoginBody extends StatelessWidget {
             //NOTE5: if authServiceRM ReactiveModel if it is waiting.
             authServiceRM.isWaiting
                 ? CircularProgressIndicator()
-                : FlatButton(
-                    color: Colors.white,
+                : TextButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.white),
+                    ),
                     child: Text(
                       'Login',
                       style: TextStyle(color: Colors.black),
