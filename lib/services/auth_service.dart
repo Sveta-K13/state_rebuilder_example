@@ -4,11 +4,13 @@ import 'common.dart';
 import 'interface.dart';
 
 class AuthService {
-  IApiUser _api;
+  IApi _api;
   User _fetchedUser;
 
-  AuthService({IApiUser api}) : _api = api;
+  AuthService({IApi api}) : _api = api;
+
   User get user => _fetchedUser;
+
   void login(String userIdText) async {
     //Delegate the input parsing and validation
     var userId = InputParser.parse(userIdText);

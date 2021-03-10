@@ -59,7 +59,7 @@ class Comment {
       id: map['id'],
       postId: map['postId'],
       name: map['name'],
-      email: Email.fromMap(map['email']),
+      email: Email(map['email']),
       body: map['body'],
     );
   }

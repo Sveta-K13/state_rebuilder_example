@@ -13,7 +13,7 @@ class Post {
     this.userId,
     this.title,
     this.body,
-    this.likes,
+    this.likes = 0,
   });
 
 //Entities should contain all the logic it controls
@@ -62,7 +62,7 @@ class Post {
       userId: map['userId'],
       title: map['title'],
       body: map['body'],
-      likes: map['likes'],
+      likes: map['likes'] ?? 0,
     );
   }
 

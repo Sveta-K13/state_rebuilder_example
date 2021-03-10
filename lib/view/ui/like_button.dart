@@ -1,0 +1,36 @@
+import 'package:demo_state_rebuilder/services/post_service.dart';
+import 'package:flutter/material.dart';
+import 'package:states_rebuilder/states_rebuilder.dart';
+
+class LikeButton extends StatelessWidget {
+  LikeButton({
+    @required this.postId,
+  });
+  final int postId;
+
+  @override
+  Widget build(BuildContext context) {
+    //NOTE1: get reactiveModel of PostsService
+    final postsServiceRM = Injector.getAsReactive<PostsService>();
+
+    return Row(
+      children: <Widget>[
+        StateBuilder(
+          observe: () => postsServiceRM,
+          builder: (_, __) {
+            //NOTE2: Optimizing rebuild. Only Text is rebuild
+            return Text('Likes ${postsServiceRM.state.getPostLikes(postId)}');
+          },
+        ),
+        MaterialButton(
+          color: Colors.white,
+          child: Icon(Icons.thumb_up),
+          onPressed: () {
+            //NOTE3: incrementLikes is a synchronous method so we do not expect errors
+            postsServiceRM.setState((state) => state.incrementLikes(postId));
+          },
+        )
+      ],
+    );
+  }
+}
